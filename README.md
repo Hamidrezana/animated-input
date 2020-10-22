@@ -1,0 +1,1 @@
+# Animated input mini project, for quera front-end course webinar
