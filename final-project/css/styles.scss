@@ -1,0 +1,89 @@
+// import variables
+@import "./variables.scss";
+
+// When some styles applied to multiple elements
+@mixin floatingLabel() {
+  color: $primary;
+  transform: translate(5px, -12px) scale(0.9);
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url("../assets/Vazir.ttf");
+}
+
+* {
+  direction: rtl;
+  text-align: right;
+  font-family: Vazir;
+  box-sizing: border-box; // Used For width: 100% for element with padding
+}
+
+body {
+  margin: 20px;
+}
+
+.card {
+  width: 700px;
+  max-width: 100%; // Show on mobile
+  margin: 0 auto; // Center this element
+  display: flex;
+  justify-content: center; // Center inner elements
+  border-radius: 19px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+}
+
+.animated-input {
+  display: flex;
+  position: relative; // absolute element positioned based on first parent with relative position
+  background-color: $backgroundColor;
+  height: 56px;
+  border-radius: 28px;
+  cursor: text; // To show text cursor in all around of input
+  padding: {
+    left: $inputPadding;
+    right: $inputPadding;
+  }
+  margin: {
+    bottom: 15px;
+  }
+  border: 1px solid $backgroundColor; // If you don't set that when you focus, element sizes change
+  transition: background 0.3s linear; // Change background with transition
+  &:hover,
+  &:focus-within {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+  // :focus-within used when any child element has been focused
+  &:focus-within {
+    border: 1px solid $primary;
+  }
+  * {
+    cursor: text; // remove this to label's cursor
+  }
+  &__label {
+    position: absolute;
+    top: 17px;
+    font-size: 13px;
+    color: $labelColor;
+    transition: all 0.3s ease-out; // Change all styles that changed with transition
+    &--active {
+      @include floatingLabel();
+    }
+  }
+  &__input {
+    all: initial; // remove all initial styles
+    flex: 1;
+    width: 100%;
+    padding: {
+      bottom: 5px;
+      top: 5px;
+    }
+    margin: {
+      top: 15px;
+    }
+  }
+  &__input:focus + &__label {
+    @include floatingLabel();
+  }
+}

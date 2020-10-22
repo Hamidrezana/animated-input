@@ -1,0 +1,4 @@
+{
+  "compile-hero.scss-output-directory": "./",
+  "compile-hero.disable-compile-files-on-did-save-code": false
+}
